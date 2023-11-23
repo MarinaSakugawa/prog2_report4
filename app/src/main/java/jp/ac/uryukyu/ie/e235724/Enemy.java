@@ -16,48 +16,48 @@ public class Enemy {
 
     /**
      * コンストラクタ。名前、最大HP、攻撃力を指定する。
-     * @param name モンスター名
-     * @param maximumHP モンスターのHP
-     * @param attack モンスターの攻撃力
+     * @param _name モンスター名
+     * @param _maximumHP モンスターのHP
+     * @param _attack モンスターの攻撃力
      */
-    public Enemy (String name, int maximumHP, int attack) {
-        this.setName(name);
-        this.setHitPoint(maximumHP);
-        this.setAttack(attack);
-        this.setDead(dead);
-        System.out.printf("%sのHPは%d。攻撃力は%dです。\n", name, maximumHP, attack);
+    public Enemy (String _name, int _maximumHP, int _attack) {
+        this.setName(_name);
+        this.setHitPoint(_maximumHP);
+        this.setAttack(_attack);
+        this.setDead(this.dead);
+        System.out.printf("%sのHPは%d。攻撃力は%dです。\n", _name, _maximumHP, _attack);
     }
 
     /**
      * nameを設定する。
-     * @param name モンスター名
+     * @param _name モンスター名
      */
-    public void setName(String name){
-        this.name = name;
+    public void setName(String _name){
+        this.name = _name;
     }
 
     /**
      * maximumHPを設定する。
-     * @param maximumHP モンスターのHP
+     * @param _maximumHP モンスターのHP
      */
-    public void setHitPoint(int maximumHP){
-        this.hitPoint = maximumHP;
+    public void setHitPoint(int _maximumHP){
+        this.hitPoint = _maximumHP;
     }
 
     /**
      * attackを設定する。
-     * @param attack モンスターの攻撃力
+     * @param _attack モンスターの攻撃力
      */
-    public void setAttack(int attack){
-        this.attack = attack;
+    public void setAttack(int _attack){
+        this.attack = _attack;
     }
 
     /**
      * deadを設定する。
-     * @param dead モンスターの生死状態
+     * @param _dead モンスターの生死状態
      */
-    public void setDead(boolean dead){
-        this.dead = dead;
+    public void setDead(boolean _dead){
+        this.dead = _dead;
     }
 
     /**
