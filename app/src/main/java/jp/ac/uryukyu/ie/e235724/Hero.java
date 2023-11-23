@@ -10,99 +10,9 @@ package jp.ac.uryukyu.ie.e235724;
  * 
  * 訂正しました。敵 → ヒーロー
  */
-public class Hero {
-    private String name;
-    private int hitPoint;
-    private int attack;
-    private boolean dead;
-
-    /**
-     * コンストラクタ。名前、最大HP、攻撃力を指定する。
-     * @param _name ヒーロー名
-     * @param _maximumHP ヒーローのHP
-     * @param _attack ヒーローの攻撃力
-     */
-    public Hero (String _name, int _maximumHP, int _attack) {
-        this.setName(_name);
-        this.setHitPoint(_maximumHP);
-        this.setAttack(_attack);
-        this.setDead(this.dead);
-        System.out.printf("%sのHPは%d。攻撃力は%dです。\n", _name, _maximumHP, _attack);
-    }
-
-    /**
-     * nameを設定する。
-     * @param _name ヒーロー名
-     */
-    public void setName(String _name){
-        this.name = _name;
-    }
-
-    /**
-     * maximumHPを設定する。
-     * @param _maximumHP ヒーローのHP
-     */
-    public void setHitPoint(int _maximumHP){
-        this.hitPoint = _maximumHP;
-    }
-
-    /**
-     * attackを設定する。
-     * @param _attack ヒーローの攻撃力
-     */
-    public void setAttack(int _attack){
-        this.attack = _attack;
-    }
-
-    /**
-     * deadを設定する。
-     * @param _dead ヒーローの生死状態
-     */
-    public void setDead(boolean _dead){
-        this.dead = _dead;
-    }
-
-    /**
-     * nameを取得する。
-     * @return this.name ヒーロー名
-     */
-    public String getName(){
-        return this.name;
-    }
-
-    /**
-     * hitPointを取得する。
-     * @return this.hitPoint ヒーローのHP
-     */
-    public int getHitPoint(){
-        return this.hitPoint;
-    }
-
-    /**
-     * attackを取得する。
-     * @return this.attack ヒーローの攻撃力
-     */
-    public int getAttack(){
-        return this.attack;
-    }
-
-    /**
-     * deadを取得する。
-     * @return this.dead ヒーローの生死状態
-     */
-    public boolean getDead(){
-        return this.dead;
-    }
-
-    /**
-     * Enemyへ攻撃するメソッド。
-     * attackに応じて乱数でダメージを算出し、hero.wounded()によりダメージ処理を実行。
-     * @param e 攻撃対象
-     */
-    public void attack(Enemy e){
-        int damage = (int)(Math.random() * this.attack);
-        System.out.printf("%sの攻撃！%sに%dのダメージを与えた！！\n", this.name, e.getName(), damage);
-        e.wounded(damage);
+public class Hero extends LivingThing{
+    public Hero (String _name, int _hitPoint, int _attack) {
+        super(_name, _hitPoint, _attack);
     }
 
     /**
@@ -110,11 +20,12 @@ public class Hero {
      * 指定されたダメージを hitPoint から引き、死亡判定を行う。
      * @param damage 受けたダメージ
      */
+    @Override
     public void wounded(int damage){
-        hitPoint -= damage;
-        if( hitPoint < 0 ) {
-            dead = true;
-            System.out.printf("勇者%sは道半ばで力尽きてしまった。\n", this.name);
+        setHitPoint(getHitPoint() - damage);;
+        if( getHitPoint() < 0 ) {
+            setDead(true);
+            System.out.printf("勇者%sは道半ばで力尽きてしまった。\n", getName());
         }
     }
 }
